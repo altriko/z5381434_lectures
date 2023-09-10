@@ -8,3 +8,4 @@ tambah lagiii
 tambah on pycharm v1
 
 tambah tulisan gini on v2
+tambah tulisan di v3
