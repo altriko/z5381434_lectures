@@ -1,11 +1,3 @@
 # FINS5546
 
-Test readme 1
-
-tambah tulisan
-
-tambah lagiii
-tambah on pycharm v1
-
-tambah tulisan gini on v2
-tambah tulisan di v3
+This is for the FINS5546 courses for T3 2023.
