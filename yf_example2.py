@@ -4,8 +4,6 @@ Example of a function to download stock prices from Yahoo Finance.
 """
 
 import yfinance as yf
-
-
 def yf_prc_to_csv(tic, pth, start=None, end=None):
     """ Downloads analysts recommendation from Yahoo Finance and saves the
     information in a CSV file

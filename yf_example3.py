@@ -7,6 +7,7 @@ import os
 from toolkit_config import DATADIR as cfg
 import yf_example2
 
+
 def qan_prc_to_csv(year):
     '''
     Download qantas stock price from yfinance and export as a csv file
@@ -20,10 +21,10 @@ def qan_prc_to_csv(year):
     output_path = os.path.join(cfg, f'qan_prc_{year}.csv')
     start_dt = f'{year}-01-01'
     end_dt = f'{year}-12-31'
-    df = yf_example2.yf_prc_to_csv(tic,output_path,start_dt,end_dt )
+    df = yf_example2.yf_prc_to_csv(tic, output_path, start_dt, end_dt)
 
 
-#Example
+# Example
 if __name__ == "__main__":
     year = 2020
     qan_prc_to_csv(year)

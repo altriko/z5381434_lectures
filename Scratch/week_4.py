@@ -69,8 +69,18 @@ After `return`, nothing will be processed (that's why return is always at the en
 # x = [i**2 for i in lst if i**2 > 150]
 # print(x)
 
-numbers = [0,1,1,2,5,6,8,2,4,6,8]
-#unique integers exist in numbers and divsible by 2
+# numbers = [0,1,1,2,5,6,8,2,4,6,8]
+# #unique integers exist in numbers and divsible by 2
+#
+# x = list({i for i in numbers if i % 2 == 0})
+# print(x)
 
-x = list({i for i in numbers if i % 2 == 0})
-print(x)
+# import lectures.mod_inside_lec
+
+#1
+from toolkit_config
+print(PRJDIR)
+
+#2
+import toolkit_config
+print(toolkit_config.PRJDIR)
