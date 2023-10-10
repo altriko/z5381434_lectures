@@ -17,9 +17,10 @@ import toolkit_config as cfg
 #     paths using methods from the `os` module
 #   - See the assessment description for more information
 # ----------------------------------------------------------------------------
-ROOTDIR = '<COMPLETE THIS PART>'
-DATDIR = '<COMPLETE THIS PART>'
-TICPATH = '<COMPLETE THIS PART>'
+ROOTDIR = os.path.join(cfg.PRJDIR, 'project1')
+DATDIR = os.path.join(ROOTDIR, 'data')
+TICPATH = os.path.join(ROOTDIR, 'TICKERS.txt')
+
 
 # ----------------------------------------------------------------------------
 # Variables describing the contents of ".dat" files
@@ -30,14 +31,14 @@ TICPATH = '<COMPLETE THIS PART>'
 # ----------------------------------------------------------------------------
 # NOTE: `COLUMNS` must be a list, where each element is a column name in the
 # order they appear in the ".dat" files
-COLUMNS = '<COMPLETE THIS PART>'
+COLUMNS = ['Volume', 'Date', 'Adj Close', 'Close', 'Open', 'High']
 
 # NOTE: COLWIDTHS must be a dictionary with {<col> : <width>}, where
 # - Each key (<col>) is a column name in the `COLUMNS` list
 # - Each value (<width>) is an **integer** with the width of the column, as
 #   defined in your README.txt file
 #
-COLWIDTHS = '<COMPLETE THIS PART>'
+COLWIDTHS = {'Volume': 14, 'Date': 11, 'Adj Close': 19, 'Close': 10, 'Open': 6, 'High': 20}
 
 
 # ----------------------------------------------------------------------------
@@ -79,8 +80,11 @@ def get_tics(pth):
 
     """
     # <COMPLETE THIS PART>
-
-
+    with open(pth, mode='r') as fobj:
+        source_file = fobj.read().split()
+        split_list = [i.replace('"', "").split("=") for i in source_file]
+        final_dict = {tic.lower(): exchange.lower() for exchange, tic in split_list}
+        return final_dict
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -113,7 +117,9 @@ def read_dat(tic):
     # like "C:\\Users...". There should be no forward or backslashes.
     # <COMPLETE THIS PART>
 
-
+    with open(os.path.join(DATDIR, f"{tic.lower()}_prc.dat") ,mode="r") as fobj:
+        source_file = fobj.read().splitlines()
+        return(source_file)
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -148,8 +154,13 @@ def line_to_dict(line):
 
     """
     # <COMPLETE THIS PART>
-
-
+    line_dict = {}
+    n = 0
+    for key, value in COLWIDTHS.items():
+        split_data = line[n:value+n]
+        line_dict[key] = split_data
+        n += value
+    return line_dict
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -186,8 +197,25 @@ def verify_tickers(tic_exchange_dic, tickers_lst=None):
 
     """
     # <COMPLETE THIS PART>
+    if tickers_lst != None:
+        if len(tic_exchange_dic) == 0:
+            raise Exception("List is null")
+        else:
+            for i in tic_exchange_dic:
+                check = False
+                for j in list(tickers_lst.keys()):
+                    if i == j:
+                        check = True
+                if check == False:
+                    raise Exception(f"{i} is not in list")
+    # elif any(i in tic_exchange_dic for i in list[tickers_lst.keys]):
+    #     raise Exception(f"{i} is not in {tickers_lst}")
+    # elif tic_exchange_dic not in list[tickers_lst.keys()]:
+    #     raise Exception("List is not found")
 
-
+# #Test Function
+# verify_tickers(['aal', 'tsm'], {'tsm':'nyse', 'aal':'nasdaq'})
+# verify_tickers([])
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -220,7 +248,23 @@ def verify_cols(col_lst=None):
 
     """
     # <COMPLETE THIS PART>
+    if col_lst != None:
+        if len(col_lst) == 0:
+            raise Exception("List is null")
+        elif col_lst:
+            pass
+            for i in col_lst:
+                check = False
+                for j in COLUMNS:
+                    if i == j:
+                        check = True
+                if check == False:
+                    raise Exception(f"{i} is not in list")
 
+
+#Test
+# verify_cols([])
+# verify_cols(['Volume3', 'Volume2'])
 
 
 # ----------------------------------------------------------------------------
@@ -275,6 +319,51 @@ def create_data_dict(tic_exchange_dic, tickers_lst=None, col_lst=None):
 
     """
     # <COMPLETE THIS PART>
+    #Tickers List Verification
+    if(tickers_lst) != None:
+        verify_tickers(tickers_lst)
+        new_tic_exchange_dic = {key: value for key, value in tic_exchange_dic.items() for i in tickers_lst if i == key}
+    else:
+        new_tic_exchange_dic = tic_exchange_dic
+
+    #Column List Verification
+    if(col_lst) != None:
+        verify_cols(col_lst)
+        new_col_lst = col_lst
+    else:
+        new_col_lst = COLUMNS
+
+
+    data_dict = {}
+    for key, value in new_tic_exchange_dic.items():
+        data_dict[key] = {"exchange": value, "data": [
+            {col: content for col, content in line_to_dict(data_line).items() for i in new_col_lst if i == col} for data_line in read_dat(key)]}
+        # for all_data in read_dat(key):
+        #     data_dict[key] = {"exchange": value, "data":[all_data]}
+
+            # for per_line in data_line:
+            #     data_dict[key] = {"exchange": value, "data":[line_to_dict(per_line)]}
+            # data_dict[key] = {"exchange": value, "data":[
+            #     {col: dat for col, dat in line_to_dict(line_dict).items() for i in col_lst if i == col} for line_dict in all_data]}
+    return data_dict
+
+
+# tickers_lst_2 = ['aapl','baba']
+# col_lst_2 = ['Date', 'Close']
+# tic_exchange_dic = get_tics(TICPATH)
+
+# line_to_dict(data_line) for j in data_line
+
+# for j in data_line:
+#     {col: content for col, content in line_to_dict(data_line).items() for i in col_lst if i == col}
+#
+# new_tic_exchange_dic = {key: value for key, value in tic_exchange_dic.items() for i in tickers_lst if i == key}
+
+#Test Print
+# print("TEST PRINT\n")
+# print(create_data_dict(get_tics(TICPATH),tickers_lst_2))
+# # print(create_data_dict(get_tics(TICPATH),tickers_lst_2,col_lst_2))
+# print("TEST PRINT\n")
 
 
 
@@ -303,7 +392,8 @@ def create_json(data_dict, pth):
 
     """
     # <COMPLETE THIS PART>
-
+    with open(pth, mode="w") as fobj:
+        json.dump(obj=data_dict, fp = fobj)
 
 
 # ----------------------------------------------------------------------------
@@ -394,14 +484,10 @@ def _test_create_json(json_pth):
 # ----------------------------------------------------------------------------
 if __name__ == "__main__":
     # Test functions
-    # _test_get_tics()
-    # _test_read_dat()
-    # _test_line_to_dict()
-    # _test_create_data_dict()
-    # _test_create_json(os.path.join(DATDIR, 'data.json'))  # Save the file to data/data.json
+    _test_get_tics()
+    _test_read_dat()
+    _test_line_to_dict()
+    _test_create_data_dict()
+    _test_create_json(os.path.join(DATDIR, 'data.json'))  # Save the file to data/data.json
     pass
-
-
-
-
 
