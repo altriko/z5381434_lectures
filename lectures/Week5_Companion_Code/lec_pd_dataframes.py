@@ -63,37 +63,35 @@ bday_ser = pd.Series(data=bday, index=dates)
 #   Create a dataframe
 # ---------------------------------------------------------------------------- 
 # Data Frame with close and Bday columns
-df  = '?'
-#print(df) 
+df  = pd.DataFrame({'Close': prc_ser, 'Bday':bday_ser})
+print(df)
 
 
 # ---------------------------------------------------------------------------- 
 #   Accessing the indexes in a dataframe
 # ---------------------------------------------------------------------------- 
 # The attribute `columns` returns the column index
-#print(df.columns) 
-#print('The type of this index is', type(df.columns)) 
+print(df.columns)
+print('The type of this index is', type(df.columns))
 
 # We can get the series corresponding to a column index label
-#col0 = df['Close'] 
-#print(col0) 
+col0 = df['Close']
+print(col0)
+print(type(col0))
 
 # Just like any series, you can access the index using:
-#print(col0.index) 
-#print(type(col0.index)) 
+print(col0.index)
+print(type(col0.index))
 
 # In fact, this corresponds to the Dataframe index as well
-#print(df.index) 
-#print(type(df.index)) 
-
+print(df.index)
+print(type(df.index))
 
 # ----------------------------------------------------------------------------
 #   Modifying columns and indexes
 # ----------------------------------------------------------------------------
 # Modify columns and indexes
-#df.columns = ['A', 'B']     
-#df.index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
-#print(df) 
+# df.columns = "?"
 
 # Then revert back
 #df.columns = ['Close', 'Bday'] 

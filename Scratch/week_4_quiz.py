@@ -1,87 +1,69 @@
-##Quiz 3
-# f_suburbs = dict()
-# f_suburbs["Fairfield"] = 18081
-# f_suburbs["Fairfield East"] = 5273
-# f_suburbs["Fairfield Heights"] = 7517
-# f_suburbs["Fairfield West"] = 11575
-# f_suburbs["Fairlight"] = 5840
-# f_suburbs["Fiddletown"] = 233
-# f_suburbs["Five Dock"] = 9356
-# f_suburbs["Flemington"] = None
-# f_suburbs["Forest Glen"] = None
-# f_suburbs["Forest Lodge"] = 4583
-# f_suburbs["Forestville"] = 8329
-# f_suburbs["Freemans Reach"] = 1973
-# f_suburbs["Frenchs Forest"] = 13473
-# f_suburbs["Freshwater"] = 8866
+#quiz 1
+# def process_string(s):
+#     return s.lower().split()
 #
-# # print(f_suburbs)
+# print(process_string("This is my test String"))
+
+
+
+# #Quiz 2
+# def process_string(s):
+#     x = s.split()
+#     y = []
+#     for i in x:
+#         if x.index(i) % 2 == 0:
+#             y.append(i.lower())
+#         else:
+#             y.append(i.upper())
+#     return y
 #
-# for i in f_suburbs:
-#     if i[:6] != "Forest" and f_suburbs[i] is not None:
-#         print(f"{i}: {f_suburbs[i]}")
+# print(process_string("This is my test String"))
+#
+
+
+# #Quiz 3
+# def fizz_buzz_sumz(i):
+#     if i > 0:
+#         y = 0
+#         for x in range (1, i+1):
+#             if x % 3 == 0 and x % 5 != 0:
+#                 y += 3 * x
+#             elif x % 3 != 0 and x % 5 == 0:
+#                 y += 5 * x
+#             elif x % 3 == 0 and x % 5 == 0:
+#                 pass
+#             else:
+#                 y += x
+#             print (f'sequence:{x} sum: {y}')
+#         return y
 #     else:
 #         pass
-
-
-##Quiz 4
-# Look over all integers from 1 to 100, doing the following:
-# - If the integer is divisible by 3 (but not by 5), write its value and Fizz. e.g., 12: Fizz
-# - If the integer is divisible by 5 (but not by 3), write its value and Buzz, e.g., 25: Buzz
-# - If the integer is divisible by 3 and divisible by 5, write its value and FIZZ BUZZ (in caps), e.g. 15: FIZZ BUZZ
-# - If none of the above apply, simply print the integer value
 #
-# To check if an integer j is divisible by 3, for example, use the logical expression j % 3 == 0.
+# print(fizz_buzz_sumz(10))
 
+#Quiz 4
+prc_dic = {
+    '3000-01-15': 7.0400,
+    '2020-01-14': 7.1100,
+    '2020-01-13': 7.0200,
+    '2020-01-02': 7.1600,
+    '2020-01-03': 7.1900,
+    '2020-01-06': 7.0000,
+    '2020-01-07': 7.1000,
+    '2020-01-08': 6.8600,
+    '2020-01-09': 6.9500,
+    '2020-01-10': 7.0000,
+}
 
-def checker(numeric):
-    if numeric % 3 == 0 and numeric % 5 != 0:
-        print(f"{numeric}: Fizz")
-    elif numeric % 3 != 0 and numeric % 5 == 0:
-        print(f"{numeric}: Buzz")
-    elif numeric % 3 == 0 and numeric % 5 == 0:
-        print(f"{numeric}: FIZZ BUZZ")
-    else:
-        print(numeric)
+# replace '???' with the correct expression
+#1
+sorted_keys = sorted([i for i, j in prc_dic.items()])
+print(sorted_keys)
 
-for i in range(1,101):
-    checker(i)
+#2
+# prc_dic.keys() = "2020-01-15"
+# sorted_keys[(len(sorted_keys)-1)] = "2020-01-15"
+# print(sorted_keys)
 
-
-#Quiz 5
-# Using the provided list l, loop over the elements and print their positional index and value. The print format should be POSITIONAL_INDEX: SUBURB. So, Fairfield would look like:
-# 0: Fairfield
-
-# l = ["Fairfield",
-#     "Fairfield East",
-#     "Fairfield Heights",
-#     "Fairfield West",
-#     "Fairlight",
-#     "Fiddletown",
-#     "Five Dock",
-#     "Flemington",
-#     "Forest Glen",
-#     "Forest Lodge",
-#     "Forestville",
-#     "Freemans Reach",
-#     "Frenchs Forest",
-#     "Freshwater"]
-
-# for i in l:
-#     print(f"{l.index(i)}: {i}")
-
-
-
-# ##Quiz 6
-# first_names = ['Dwayne', 'Ryan', 'Mark', 'Ben', 'Vin']
-# middle_names = ['"The Rock"', 'Rodney', 'Robert Michael', 'Geza', None]
-# last_names = ['Johnson', 'Reynolds', 'Wahlberg', 'Affleck', 'Diesel']
-#
-# for last in last_names:
-#     for first in first_names:
-#         for middle in middle_names:
-#             if middle is not None:
-#                 print(first, middle, last)
-#             else:
-#                 print(first, last)
-
+prc_dic['2020-01-15'] = prc_dic.pop('3000-01-15')
+print(prc_dic)

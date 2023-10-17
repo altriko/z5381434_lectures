@@ -66,15 +66,15 @@ bday_ser = pd.Series(data=bday, index=dates)
 # ---------------------------------------------------------------------------- 
 # Data Frame with close and Bday columns
 df = pd.DataFrame({'Close': prc_ser, 'Bday': bday_ser}) 
-#print(df) 
-
-#df.info() 
+print(df)
+#
+# df.info()
 
 # Get the series containing "Close" prices
-#ser = df['Close'] 
+ser = df['Close']
 
 # Get the underlying data array
-#print(ser.array) 
+print(ser.array)
 
 # and the type
 #print(type(ser.array)) 
@@ -82,7 +82,7 @@ df = pd.DataFrame({'Close': prc_ser, 'Bday': bday_ser})
 
 # The .values attribute will give you a numpy array 
 # with the contents of the series
-#print(ser.values) 
+print(ser.values)
 
 # The type is <class 'numpy.ndarray'>
 #print(type(ser.values)) 
@@ -93,17 +93,17 @@ df = pd.DataFrame({'Close': prc_ser, 'Bday': bday_ser})
 
 # Add an empty row to the `df` dataframe
 # Create a copy
-#df_nan = df.copy() 
+df_nan = df.copy()
 
 # Add an emtpy row to the `df_nan` dataframe
-#df_nan.loc['3000-01-01'] = [np.nan, np.nan] 
-#print(df_nan) 
+df_nan.loc['3000-01-01'] = [np.nan, np.nan]
+print(df_nan)
 
 # Note that the dtypes changed
-#print("\nThis is the `df` dataframe:") 
-#print(df.info()) 
-#print("\nThis is the `df_nan` dataframe:") 
-#print(df_nan.info()) 
+print("\nThis is the `df` dataframe:")
+print(df.info())
+print("\nThis is the `df_nan` dataframe:")
+print(df_nan.info())
 
 # Convert dtypes
 #df_new = df_nan.convert_dtypes() 

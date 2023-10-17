@@ -338,32 +338,8 @@ def create_data_dict(tic_exchange_dic, tickers_lst=None, col_lst=None):
     for key, value in new_tic_exchange_dic.items():
         data_dict[key] = {"exchange": value, "data": [
             {col: content for col, content in line_to_dict(data_line).items() for i in new_col_lst if i == col} for data_line in read_dat(key)]}
-        # for all_data in read_dat(key):
-        #     data_dict[key] = {"exchange": value, "data":[all_data]}
-
-            # for per_line in data_line:
-            #     data_dict[key] = {"exchange": value, "data":[line_to_dict(per_line)]}
-            # data_dict[key] = {"exchange": value, "data":[
-            #     {col: dat for col, dat in line_to_dict(line_dict).items() for i in col_lst if i == col} for line_dict in all_data]}
     return data_dict
 
-
-# tickers_lst_2 = ['aapl','baba']
-# col_lst_2 = ['Date', 'Close']
-# tic_exchange_dic = get_tics(TICPATH)
-
-# line_to_dict(data_line) for j in data_line
-
-# for j in data_line:
-#     {col: content for col, content in line_to_dict(data_line).items() for i in col_lst if i == col}
-#
-# new_tic_exchange_dic = {key: value for key, value in tic_exchange_dic.items() for i in tickers_lst if i == key}
-
-#Test Print
-# print("TEST PRINT\n")
-# print(create_data_dict(get_tics(TICPATH),tickers_lst_2))
-# # print(create_data_dict(get_tics(TICPATH),tickers_lst_2,col_lst_2))
-# print("TEST PRINT\n")
 
 
 

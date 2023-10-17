@@ -39,25 +39,29 @@ prices = [
 #   Create a Series instance
 # ---------------------------------------------------------------------------- 
 # Create a series object
-ser  = '?'
-#print(ser) 
+ser  = pd.Series(data=prices, index=dates)
+print(ser)
 
 # Select Qantas price on '2020-01-02' ($7.16) using ...
 
 # ... the `prices` list
-prc0  = '?'
-#print(prc0) 
+prc0  = prices[dates.index('2020-01-02')] # this one like index-match in Excel file
+print(prc0)
 
 # ... the `ser` series
-prc1  = '?'
-#print(prc1)                     
+prc1  = ser['2020-01-02']
+print(prc1)
 
 # ---------------------------------------------------------------------------- 
 #   Slicing series
 # ---------------------------------------------------------------------------- 
 # Unlike dictionaries, you can slice a series
-prcs  = '?'
-#print(prcs) 
+prcs  = ser['2020-01-02':'2020-01-10']
+print(prcs)
+
+
+# Using the lists:
+print(prices[dates.index('2020-01-02'):dates.index('2020-01-10')+1]) #need to +1
 
 # ---------------------------------------------------------------------------- 
 #   Accessing the underlying array
