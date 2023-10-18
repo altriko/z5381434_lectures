@@ -252,7 +252,6 @@ def verify_cols(col_lst=None):
         if len(col_lst) == 0:
             raise Exception("List is null")
         elif col_lst:
-            pass
             for i in col_lst:
                 check = False
                 for j in COLUMNS:
@@ -262,7 +261,7 @@ def verify_cols(col_lst=None):
                     raise Exception(f"{i} is not in list")
 
 
-#Test
+#Test Function
 # verify_cols([])
 # verify_cols(['Volume3', 'Volume2'])
 
