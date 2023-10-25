@@ -104,8 +104,14 @@ def mk_df(date_info, aud_usd_info, eur_aud_info):
 
     df = pd.concat([date_info_series, aud_usd_info_series, eur_aud_info_series], axis =1)
     df.columns = ["Date", "AUD/USD", "EUR/AUD"]
-    # df.reset_index(inplace=True)
-    df.set_index("Date", inplace=True, drop=True)
+    df.reset_index(inplace=True)
+    # df.set_index("Date", inplace=True, drop=True)
+
+    # df = pd.concat([aud_usd_info_series, eur_aud_info_series], axis=1, keys=["AUD/USD", "EUR/AUD"])
+    # print(df)
+
+    df.index = date_info_series.values
+    df = df.drop(columns=["index", "Date"])
     return df
 
 
@@ -141,3 +147,48 @@ eur_aud_info = [
 
 df = mk_df(date_info, aud_usd_info, eur_aud_info)
 print(df)
+
+
+# ###PUNYA WAHYU
+# def mk_df(date_info, aud_usd_info, eur_aud_info):
+#     """ Combines the information from different sources to produce a dataframe
+#     with dates row labels. Row labels must be sorted
+#
+#     Parameters
+#     ----------
+#     date_info : list
+#         date_info = [(row_id, date)]
+#
+#     aud_usd_info : list
+#         aud_usd_info = [(row_id, aud/usd)]
+#
+#
+#     eur_aud_info : list
+#         eur_aud_info = [(row_id, eur/aud)]
+#
+#     Returns
+#     -------
+#     df
+#     """
+#
+#     # Create dictionaries for each type of information
+#     date_info_dict = dict(date_info)
+#     aud_usd_info_dict = dict(aud_usd_info)
+#     eur_aud_info_dict = dict(eur_aud_info)
+#
+#     # Extract the row_ids from each source
+#     all_ids = set(date_info_dict.keys()) | set(aud_usd_info_dict.keys()) | set(eur_aud_info_dict.keys())
+#
+#     # Sort the row_ids
+#     all_ids = sorted(all_ids)
+#
+#     # Create lists for dates, AUD/USD, and EUR/AUD values with NaN for missing data
+#     dates = [date_info_dict.get(row_id, None) for row_id in all_ids]
+#     aud_usd_values = [aud_usd_info_dict.get(row_id, None) for row_id in all_ids]
+#     eur_aud_values = [eur_aud_info_dict.get(row_id, None) for row_id in all_ids]
+#
+#     # Create a DataFrame with sorted dates as row labels
+#     df = pd.DataFrame({'Dates': dates, 'AUD/USD': aud_usd_values, 'EUR/AUD': eur_aud_values})
+#     df.set_index('Dates', inplace=True)
+#
+#     return df
