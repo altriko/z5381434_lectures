@@ -30,3 +30,5 @@ new_df = df.copy()
 new_df.loc['1', :] = 1
 
 print(df.loc['AUD/USD'])
+
+#Test changes
