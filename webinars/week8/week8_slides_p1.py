@@ -64,8 +64,7 @@ utils.pp_cfg.show_type = True
 # returns an instance of `dt.datetime` representing the current date/time.
 
 # Instance of `dt.datetime` with the current date/time
-dt_now = '?'
-
+dt_now = dt.datetime.now()
 
 # Aside: How can we print a representation of an object?
 #
@@ -84,8 +83,8 @@ dt_now = '?'
 # First, str(obj)
 
 # <example>
-#print("str(dt.datetime.now()) is:")
-#print(str(dt_now))
+# print("str(dt.datetime.now()) is:")
+# print(str(dt_now))
 # </example>
 
 
@@ -95,8 +94,8 @@ dt_now = '?'
 # Now, using `repr(obj)`
 # Note that `dt_now` is an instance of datetime.datetime
 # <example>
-#print("repr(dt.datetime.now()) is:")
-#print(repr(dt_now))
+# print("repr(dt.datetime.now()) is:")
+# print(repr(dt_now))
 # </example>
 
 
@@ -107,9 +106,9 @@ dt_now = '?'
 
 # Example:
 # <example>
-#dt_now  = dt.datetime.now()
-#utils.pprint(dt_now, msg="This is dt_now (pretty=True)", pretty=True)
-#utils.pprint(dt_now, msg="This is dt_now (pretty=False)", pretty=False)
+# dt_now  = dt.datetime.now()
+# utils.pprint(dt_now, msg="This is dt_now (pretty=True)", pretty=True)
+# utils.pprint(dt_now, msg="This is dt_now (pretty=False)", pretty=False)
 # </example>
 
 
@@ -151,19 +150,19 @@ dt0 = dt.datetime(
     second=0, 
     microsecond=0)
 
-#utils.pprint(dt0, "dt0 is:\n", pretty=False)
+utils.pprint(dt0, "dt0 is:\n", pretty=False)
 
 
 # We do not need to specify all the parameters (year, month, day are required)
 # Create a dt.datetime obj with year=2022, month=11, day=1
-dt1 = '?'
+dt1 = dt.datetime(2022,11,1)
 
 
-#utils.pprint(dt1, "dt1 is:\n", pretty=False)
-#utils.pprint(dt1.year, 'dt1.year')
-#utils.pprint(dt1.month, 'dt1.month')
-#utils.pprint(dt1.day, 'dt1.day')
-#utils.pprint(dt1.hour, 'dt1.hour')
+utils.pprint(dt1, "dt1 is:\n", pretty=False)
+utils.pprint(dt1.year, 'dt1.year')
+utils.pprint(dt1.month, 'dt1.month')
+utils.pprint(dt1.day, 'dt1.day')
+utils.pprint(dt1.hour, 'dt1.hour')
 
 
 # ---------------------------------------------------------------------------- 
@@ -172,8 +171,8 @@ dt1 = '?'
 # Lets create two other datetime instances:
 #   dt0 --> 2019-12-31 00:00:00
 #   dt1 --> 2020-01-01 00:00:00
-dt0  = '?'
-dt1  = '?'
+dt0  = dt.datetime(2019,12,31)
+dt1  = dt.datetime(2020,1,1)
 
 
 #utils.pprint(dt0, "dt0 is:\n", pretty=False)
@@ -181,7 +180,7 @@ dt1  = '?'
 
 
 # Operations between datetime objects will return timedelta objects
-#delta  = dt1 - dt0
+delta  = dt1 - dt0
 
 
 #msg = f"The operation:\n  {repr(dt1)} \n    - {repr(dt0)}\ngives:"
@@ -203,35 +202,35 @@ msg = f'''Given:
     end: {end}
 then `new_delta` is:
 '''
-#utils.pprint(new_delta, msg, )
+utils.pprint(new_delta, msg, )
 
 
 # Add 12 hours to some date
 #   - `start` will be the starting date (same as above)
 #   - `delta` will be a period of 12 hours (same as new_delta)
 #   - `new_end` will be the ending date (same as `end` above)
-delta  = '?'
+delta  = dt.timedelta(seconds=43200)
 
 
 # This is the new date
 # <example>
-#new_end = start + delta
+new_end = start + delta
 # </example>
 
 # <example>
-#msg = f'''Given:
-#    start: {repr(start)}
-#    delta: {repr(delta)}
-#If
-#    new_end = start + delta
-#
-#then `repr(new_end)` is:
-#    {repr(new_end)}
-#
-#and `str(new_end)` is:
-#    {str(new_end)}
-#'''
-#utils.pprint(msg, show_type=True)
+msg = f'''Given:
+   start: {repr(start)}
+   delta: {repr(delta)}
+If
+   new_end = start + delta
+
+then `repr(new_end)` is:
+   {repr(new_end)}
+
+and `str(new_end)` is:
+   {str(new_end)}
+'''
+utils.pprint(msg, show_type=True)
 # </example>
 
 # ----------------------------------------------------------------------------
@@ -258,13 +257,19 @@ delta  = '?'
 #   Exercises (5 mins each)
 # ----------------------------------------------------------------------------
 # 1. For how many seconds have you been alive?
+start_birthdate = dt.datetime(1997,1,6)
+now_birthdate = dt.datetime.now()
 
+sec_in_birth = now_birthdate - start_birthdate
+utils.pprint(sec_in_birth.total_seconds(),msg='alive in seconds')
 
 
 # 2. How old will you be in 1,340 days
+delta_1340 = dt.timedelta(days=1340)
+in_1340_days = sec_in_birth + delta_1340
+utils.pprint(in_1340_days.total_seconds()//(365*86400), msg="How Old")
 
-
-# ---------------------------------------------------------------------------- 
+# ----------------------------------------------------------------------------
 #   The `strftime` method
 #   Used to create strings representing dates (in different format)
 # ---------------------------------------------------------------------------- 
