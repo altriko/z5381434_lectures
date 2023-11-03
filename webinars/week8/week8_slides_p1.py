@@ -298,18 +298,18 @@ utils.pprint(in_1340_days.total_seconds()//(365*86400), msg="How Old")
 # Create a datetime object representing
 #   2020-12-31 00:00:00
 # <example>
-#date = dt.datetime(year=2020, month=12, day=31, hour=0)
-#utils.pprint(date, "date is:")
+date = dt.datetime(year=2020, month=12, day=31, hour=0)
+utils.pprint(date, "date is:")
 # </example>
 
 # Convert to a **string** with the following formats
 #   2020-12-31
 #   Dec 31, 2020
-s1  = '?'
+s1  = 'year=2020, month=12, day=31, hour=0'
 # <example>
-#s1 = date.strftime('%Y-%m-%d')
+s1 = date.strftime('%Y-%m-%d')
 # </example>
-#print(s1)
+print(s1)
 s2  = '?'
 # <example>
 #s2 = date.strftime('%b %d, %Y')

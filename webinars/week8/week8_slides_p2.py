@@ -87,7 +87,7 @@ date       , open   , high   , low    , close  , volume
 # pd.read_csv does work here...
 #
 # <example>
-#df = pd.read_csv(csv_cnts) # -> Exception
+# df = pd.read_csv(csv_cnts) # -> Exception
 # </example>
 
 
@@ -98,16 +98,16 @@ date       , open   , high   , low    , close  , volume
 #
 
 # <example>
-#tsla_prc_csv = utils.csv_to_fobj(csv_cnts)
-#df = pd.read_csv(tsla_prc_csv) # -> DF
-#utils.pprint(df, "pd.read_csv(tsla_prc_cv")
+tsla_prc_csv = utils.csv_to_fobj(csv_cnts)
+df = pd.read_csv(tsla_prc_csv) # -> DF
+# utils.pprint(df, "pd.read_csv(tsla_prc_cv")
 # </example>
 
 
 # Alternatively: lec_utils.csv_to_df(str) -> DF
 # <example>
-#df = utils.csv_to_df(csv_cnts)
-#utils.pprint(df)
+df = utils.csv_to_df(csv_cnts)
+# utils.pprint(df)
 # </example>
 
 # ---------------------------------------------------------------------------- 
@@ -153,7 +153,7 @@ date       , open   , high   , low    , close  , volume
 #   dtypes: float64(5), int64(1), object(1)
 #   memory usage: 1.2+ KB
 
-df  = '?'
+# df  = '?'
 
 # Again, this will not work
 #df = pd.read_csv(csv_cnts)
@@ -197,10 +197,10 @@ fmt = '%Y-%m-%d'
 # return another series with datetime objects
 
 # <example>
-#date_ser = df.loc[:, 'date'] # This is a series
-#dt_ser = pd.to_datetime(date_ser, format=fmt)
-#utils.pprint(date_ser, "df.loc[:, 'date'] is:")
-#utils.pprint(dt_ser, "Converting to datetime using `pd.to_datetime` gives:")
+date_ser = df.loc[:, 'date'] # This is a series
+dt_ser = pd.to_datetime(date_ser, format=fmt)
+utils.pprint(date_ser, "df.loc[:, 'date'] is:")
+utils.pprint(dt_ser, "Converting to datetime using `pd.to_datetime` gives:")
 # </example>
 
 
@@ -295,5 +295,3 @@ utils.pprint(df_2020_11_0204)
 #rets = df.loc[:, 'close'].pct_change(freq='B')  # <mask>
 #utils.pprint(rets)
 # </example>
-
-
