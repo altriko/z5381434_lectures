@@ -85,6 +85,8 @@ def get_tics(pth):
         split_list = [i.replace('"', "").split("=") for i in source_file]
         final_dict = {tic.lower(): exchange.lower() for exchange, tic in split_list}
         return final_dict
+    #notes: need to do .strip() since it's no spaces
+    #doesn't create if line >0 for non empty line
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -120,6 +122,7 @@ def read_dat(tic):
     with open(os.path.join(DATDIR, f"{tic.lower()}_prc.dat") ,mode="r") as fobj:
         source_file = fobj.read().splitlines()
         return(source_file)
+    #they use the for i in fobj to split each lines
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -161,6 +164,8 @@ def line_to_dict(line):
         line_dict[key] = split_data
         n += value
     return line_dict
+
+    #i need to use the `COLUMNS`
 
 # ----------------------------------------------------------------------------
 #   Please complete the body of this function so it matches its docstring
@@ -459,10 +464,10 @@ def _test_create_json(json_pth):
 # ----------------------------------------------------------------------------
 if __name__ == "__main__":
     # Test functions
-    _test_get_tics()
-    _test_read_dat()
-    _test_line_to_dict()
+    # _test_get_tics()
+    # _test_read_dat()
+    # _test_line_to_dict()
     _test_create_data_dict()
-    _test_create_json(os.path.join(DATDIR, 'data.json'))  # Save the file to data/data.json
+    # _test_create_json(os.path.join(DATDIR, 'data.json'))  # Save the file to data/data.json
     pass
 
