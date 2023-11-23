@@ -29,7 +29,9 @@ def calc_tstats(event_cars):
     # collect the number of obs in each group
     car_n = groups.count()
     conf_int = st.t.cdf(car_t, df=car_n)
+    conf_lvl = 0.95
+    critical_t_value = st.t.ppf((1+conf_lvl)/2, df=car_n-1)
 
     # Construct the result data frame
-    res = pd.DataFrame({'car_bar':car_bar, 'car_t': car_t, 'n_obs': car_n, 'conf_int': conf_int})
+    res = pd.DataFrame({'car_bar':car_bar, 'car_t': car_t, 'n_obs': car_n, 'conf_int': conf_int, 'critical_t_value': critical_t_value})
     return res

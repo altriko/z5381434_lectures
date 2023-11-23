@@ -19,24 +19,24 @@ QAN_CLOSE_CSV = os.path.join(cfg.DATADIR, 'qan_close_ser.csv')
 
 # Load the data contained in qan_prc_2020.csv to a DF
 
-#qan_naive_read = pd.read_csv(QAN_PRC_CSV) 
-#print(qan_naive_read)
-#qan_naive_read.info()
-#
+qan_naive_read = pd.read_csv(QAN_PRC_CSV)
+print(qan_naive_read)
+qan_naive_read.info()
 
+#
 # Using the `set_index` method
 
-#qan_naive_read.set_index('Date', inplace=True) 
-#print(qan_naive_read)
-#qan_naive_read.info()
+qan_naive_read.set_index('Date', inplace=True)
+print(qan_naive_read)
+qan_naive_read.info()
 #
 
 # Using the `index_col` parameter:
 
-#qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date') 
-#print(qan_better_read)
+qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date')
+print(qan_better_read)
 #
-#qan_better_read.info()
+qan_better_read.info()
 #
 
 
@@ -45,11 +45,11 @@ QAN_CLOSE_CSV = os.path.join(cfg.DATADIR, 'qan_close_ser.csv')
 #   Storing data to a CSV file 
 # ----------------------------------------------------------------------------
 # First, we read the data into a dataframe
-#qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date')  
+qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date')
 
 # We then save the data into the file located at QAN_NOHEAD_CSV above.
 # The column headers will not be saved
-#qan_better_read.to_csv(QAN_NOHEAD_CSV, header=False)  
+qan_better_read.to_csv(QAN_NOHEAD_CSV, header=False)
 
 
 
@@ -58,15 +58,15 @@ QAN_CLOSE_CSV = os.path.join(cfg.DATADIR, 'qan_close_ser.csv')
 # ----------------------------------------------------------------------------
 # Create a series from a dataframe
 
-#qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date')
-#ser = qan_better_read.loc[:, 'Close']
-#print(ser)
-#ser.to_csv(QAN_CLOSE_CSV)
-#
+qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col='Date')
+ser = qan_better_read.loc[:, 'Close']
+print(ser)
+ser.to_csv(QAN_CLOSE_CSV)
+
 
 
 # Note that the name of the series will be the same as the column label
-#print(ser.name) 
+print(ser.name)
 
 # Create a series without a name
 

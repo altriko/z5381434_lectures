@@ -98,8 +98,8 @@ print(res)
 new_cond = cond.array
 
 # This will produce the same output as above
-res = df.loc[new_cond]
-print(res)
+# res = df.loc[new_cond]
+# print(res)
 
 
 # Indexer not the same length as the dataframe
