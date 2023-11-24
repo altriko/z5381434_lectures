@@ -257,7 +257,7 @@ def groupby_example0():
     groups = df.groupby('firm')
     res  = '?'
     # <example>
-    #res = groups.count()
+    res = groups.count()
     # </example>
     utils.pprint(res,  "groups.count():\n")
 
@@ -375,18 +375,18 @@ def bool_example0():
     #   Using booleans to select rows 
     # ----------------------------------------------------------------------------
     # will be a series with boolean values
-    cond = '?'
+    # cond = '?'
     # <example>
-    #cond = df.loc[:, 'action'] == 'up'
+    cond = df.loc[:, 'action'] == 'up'
     # </example>
     utils.pprint(cond, "cond = df.loc[:, 'action'] == 'up'\nThen cond is:\n")
 
 
     # We can use this series as an indexer:
     # A series of booleans can be used to select rows that meet the criteria
-    res  = '?'
+    # res  = '?'
     # <example>
-    #res = df.loc[cond] # <mask>
+    res = df.loc[cond] # <mask>
     # </example>
     utils.pprint(res, "df.loc[cond]:\n")
 

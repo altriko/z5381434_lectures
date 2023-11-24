@@ -398,8 +398,8 @@ x  = '?'
 # | series[label] | scalar value | Label must exist, otherwise KeyError |
 
 # Set `x` to be the price for '2020-01-13'
-x  = '?'
-#print(x) # --> 7.02  
+x  = ser['2020-01-13']
+print(x) # --> 7.02
 
 # Try using an index label that does not exist, It will raise a KeyError
 # x = ser['3000-01-10'] 
@@ -413,8 +413,8 @@ x  = '?'
 
 
 # Set `x` to be a series with the first two rows of `ser`
-x  = '?'
-#print(x)  
+x  = ser[:2]
+print(x)
 
 # All labels must exist. The following will raise a KeyError because a label
 # is not part of ser.index
@@ -433,8 +433,8 @@ x  = '?'
 # elements between `start_label` and `end_label` (including endpoints)
 
 # Set `x` to include all obs between  '2020-01-13' and '2020-01-14'
-x  = '?'
-#print(x)  
+x  = ser['2020-01-13':'2020-01-14']
+print(x)
 
 
 # (2) If either `start_label` or `end_label` not included in the index, the
@@ -450,29 +450,29 @@ x  = '?'
 #print(x)  
 
 # Create a series with an unsorted index 
-#new_ser = pd.Series(data=[1,3,2], index=['a', 'c', 'b'])  
+new_ser = pd.Series(data=[1,3,2], index=['a', 'c', 'b'])
 
 # First, select a slice from 'a' to 'b'. Because both labels are included in
 # the index, the slice will contain all obs between the indexes 'a' and 'b'
-x  = '?'
-#print(x)  
+x  = new_ser['a':'b']
+print(x)
 
 # Next, select a slice from 'a' to 'z'. Note that 'z' is not part of the
 # index. Since the index is not sorted, the following will result in an error
-# x = new_ser['b':'z']  
+# x = new_ser['b':'z']
 
 
 # Series also have a method called `sort_index`, which will return a copy of the
 # series with sorted indexes:
 
 # Sort the series
-sorted_ser  = '?'
-#print(sorted_ser)  
+sorted_ser  = new_ser.sort_index()
+print(sorted_ser)
 
 
 # This will return only the first rows (not the entire series as before)
-#x = sorted_ser['a':'b']  
-#print(x)  
+x = sorted_ser['a':'b']
+print(x)
 
 
 
@@ -517,8 +517,8 @@ x  = '?'
 #print(x)  
 
 # This returns the series in reverse order
-#x = ser[::-1]  
-#print(x)  
+x = ser[::-1]
+print(x)
 
 
 new_ser = pd.Series(data=['a','b', 'c'], index=[1, -4, 10])
@@ -553,8 +553,8 @@ x = new_ser[1:-4]
 
 # df[column label] --> series if column exists, error otherwise
 # `x` will be a series with values in Close
-#x = df['Close']   
-#print(x)  
+x = df['Close']
+print(x)
 
 # Note that the label is case sensitive. For instance the following 
 # raises KeyError 
@@ -570,9 +570,9 @@ x = new_ser[1:-4]
 # df[list of column labels] --> dataframe with columns in the same order
 # as the column labels
 # Note: All column labels must exist, otherwise error
-#cols = ['Bday', 'Close']  
-#x = df[cols]  
-#print(x)  
+cols = ['Bday', 'Close']
+x = df[cols]
+print(x)
 
 # Note: Remember that this will NOT work (because it is not a list)
 #x = df['Close', 'Bday'] #--> raise error
